@@ -1,6 +1,6 @@
-import { useState } from 'react'
 import Dashboard from './components/Dashboard'
 import Searchbar from './components/Searchbar'
+import Leafletmap from './components/Leafletmap'
 function App() {
 
   return (
@@ -9,13 +9,18 @@ function App() {
     justify-content-center
     align-items-center
     ">
-      <h1 className='text-primary'>
-        IP Address Tracker
-      </h1>
-      <nav>
-        <Searchbar />
-      </nav>
-      <Dashboard />
+      <header>
+        <h1 className='text-primary'>
+          IP Address Tracker
+        </h1>
+        <nav>
+          <Searchbar />
+        </nav>
+        <Dashboard />
+      </header>
+      <main>
+        <Leafletmap />
+      </main>
     </div>
   )
 }
