@@ -1,8 +1,9 @@
 import Dashboard from './components/Dashboard'
 import Searchbar from './components/Searchbar'
 import Leafletmap from './components/Leafletmap'
+import usefetchapi from './hooks/usefetchapi'
 function App() {
-
+  usefetchapi()
   return (
     <div className="d-flex 
   flex-column
