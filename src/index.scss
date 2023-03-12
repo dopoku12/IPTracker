@@ -4,7 +4,12 @@
   width: 20vw;
 }
 
-#map {
-  height: 18%;
-  width: 17%;
+.map-container {
+  height: 400px;
+  width: 100%;
+}
+
+.leaflet-container {
+  background-color: #f2f2f2;
+  border: 1px solid #ddd;
 }
