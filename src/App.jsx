@@ -14,9 +14,7 @@ function App() {
         <h1 className='text-primary'>
           IP Address Tracker
         </h1>
-        <nav>
-          <Searchbar />
-        </nav>
+        <Searchbar />
         <Dashboard />
       </header>
       <main>
