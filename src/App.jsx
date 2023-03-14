@@ -2,6 +2,7 @@ import Dashboard from './components/Dashboard'
 import Searchbar from './components/Searchbar'
 import Leafletmap from './components/Leafletmap'
 import usefetchapi from './hooks/usefetchapi'
+import Footer from './components/Footer'
 function App() {
   const { data } = usefetchapi()
   return (
@@ -20,6 +21,7 @@ function App() {
       <main>
         <Leafletmap />
       </main>
+      <Footer />
     </div>
   )
 }
