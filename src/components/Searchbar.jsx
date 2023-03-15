@@ -1,5 +1,4 @@
-import { FaAngleRight } from 'react-icons/fa'
-const Searchbar = () => {
+const Searchbar = ({ FaAngleRight }) => {
     return (
         <nav>
             <form className='input-group'>
