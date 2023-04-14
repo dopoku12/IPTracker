@@ -32,11 +32,6 @@ function App() {
 
   const { data } = usefetchapi()
 
-
-
-
-
-
   return (
     <div className="d-flex 
   flex-column
