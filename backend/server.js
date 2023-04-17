@@ -1,12 +1,14 @@
 const express = require("express");
 const axios = require('axios');
 const cors = require('cors');
+
+
 require('dotenv').config();
 const app = express();
-
+app.use(cors())
 const PORT = process.env.PORT || 3003;
 
-var ip_addr = '173.252.107.14'
+let ip_addr = '173.252.107.14'
 
 app.get("/api", (req, res) => {
 
