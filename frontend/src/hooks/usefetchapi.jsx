@@ -4,7 +4,7 @@ const usefetchapi = () => {
     const [data, SetData] = useState()
 
     useEffect(() => {
-        axios.get('localhost:3003/api', { withCredentials: true })
+        axios.get('http://localhost:3003/api')
             .then((response) => {
                 console.log(response.data);
             })
