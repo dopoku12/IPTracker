@@ -8,7 +8,7 @@ const app = express();
 app.use(cors())
 const PORT = process.env.PORT || 3003;
 
-let ip_addr = '173.252.107.14'
+let ip_addr = '96.255.200.180'
 
 app.get("/api", (req, res) => {
 

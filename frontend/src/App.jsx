@@ -1,7 +1,7 @@
 import Dashboard from './components/Dashboard'
 import Searchbar from './components/Searchbar'
 import Leafletmap from './components/Leafletmap'
-import usefetchapi from './hooks/usefetchapi'
+import useFetch from './hooks/useFetch'
 import Footer from './components/Footer'
 import {
   FaGithub, FaLinkedin,
@@ -30,8 +30,8 @@ function App() {
       name: 'Email', pathName: ''
     }]
 
-  const { data } = usefetchapi()
-
+  const { data } = useFetch()
+  console.log(data)
   return (
     <div className="d-flex 
   flex-column
@@ -43,10 +43,10 @@ function App() {
           IP Address Tracker
         </h1>
         <Searchbar FaAngleRight={FaAngleRight} />
-        <Dashboard />
+        <Dashboard data={data} />
       </header>
       <main>
-        <Leafletmap />
+        <Leafletmap data={data} />
       </main>
       <Footer links={links} />
     </div>

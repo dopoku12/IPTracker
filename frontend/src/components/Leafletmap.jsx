@@ -7,9 +7,14 @@ import {
 } from 'react-leaflet'
 import "leaflet/dist/leaflet.css"
 
-const Leafletmap = () => {
+const Leafletmap = ({ data }) => {
+    console.log('lat:', data.lat, 'lon:', data.lon)
     return (
-        <MapContainer center={[51.505, -0.09]}
+
+        <MapContainer center={
+            data ? [data.lat, data.lon] :
+                [51.505, -0.09]
+        }
             zoom={13} scrollWheelZoom={false}>
             <TileLayer
                 attribution='&copy; <a 
@@ -17,9 +22,12 @@ const Leafletmap = () => {
                 contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
-            <Marker position={[51.505, -0.09]}>
+            <Marker position={
+                data ? [data.lat, data.lon] :
+                    [51.505, -0.09]
+            }>
                 <Popup>
-                    A pretty CSS3 popup. <br /> Easily customizable.
+                    Current location
                 </Popup>
             </Marker>
         </MapContainer>
