@@ -29,9 +29,13 @@ function App() {
       id: 6, colorCode: '78cac5', iconName: FaEnvelope,
       name: 'Email', pathName: ''
     }]
-
-  const { data } = useFetch()
+  const local = 'http://localhost:3003'
+  const ipify = 'https://api.ipify.org/'
+  const { data } = useFetch(local)
   console.log(data)
+  const { data: ipRes } = useFetch(ipify)
+
+  console.log(ipRes);
   return (
     <div className="d-flex 
   flex-column
@@ -46,7 +50,10 @@ function App() {
         <Dashboard data={data} />
       </header>
       <main>
-        <Leafletmap data={data} />
+        {
+
+          data && <Leafletmap data={data} />
+        }
       </main>
       <Footer links={links} />
     </div>
