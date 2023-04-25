@@ -1,20 +1,21 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-const usefetchapi = () => {
-    const [data, SetData] = useState()
+
+const useGet = (api) => {
+    const [data, SetData] = useState('')
 
     useEffect(() => {
-        axios.get('localhost:3003/api', { withCredentials: true })
+        axios.get(api)
             .then((response) => {
-                console.log(response.data);
+
+                SetData(response.data)
             })
             .catch((err) => {
                 console.error('error:', err);
-
             })
 
-    }, []);
+    }, [api]);
     return { data }
 }
 
-export default usefetchapi; 
+export default useGet; 
