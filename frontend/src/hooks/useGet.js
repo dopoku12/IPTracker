@@ -7,7 +7,6 @@ const useGet = (api) => {
     useEffect(() => {
         axios.get(api)
             .then((response) => {
-
                 SetData(response.data)
             })
             .catch((err) => {
