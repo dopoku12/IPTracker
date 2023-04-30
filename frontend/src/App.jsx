@@ -1,7 +1,7 @@
 import Dashboard from './components/Dashboard'
 import Searchbar from './components/Searchbar'
 import Leafletmap from './components/Leafletmap'
-import useFetch from './hooks/useGet'
+import useFetch from './hooks/useFetch'
 import Footer from './components/Footer'
 import {
   FaGithub, FaLinkedin,
@@ -9,8 +9,7 @@ import {
   FaAngleRight
 }
   from 'react-icons/fa'
-import useGet from './hooks/useGet'
-import usePost from './hooks/usePost'
+
 function App() {
   //external links
   const links = [
@@ -31,15 +30,9 @@ function App() {
       id: 6, colorCode: '78cac5', iconName: FaEnvelope,
       name: 'Email', pathName: ''
     }]
-  const local = 'http://localhost:3003/'
-  const { data } = useGet(local)
+  const local = 'http://localhost:3003/api'
+  const { data } = useFetch(local)
   console.log(data)
-
-  const ipify = 'http://api.ipify.org/'
-  const { data: ipRes } = useGet(ipify)
-
-  usePost(ipRes, local)
-
 
   return (
     <div className="d-flex 
@@ -56,7 +49,6 @@ function App() {
       </header>
       <main>
         {
-
           data && <Leafletmap data={data} />
         }
       </main>
