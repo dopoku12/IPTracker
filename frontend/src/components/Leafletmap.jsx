@@ -27,7 +27,7 @@ const Leafletmap = ({ data }) => {
                 data ? userLnL : defaultLnL
             }>
                 <Popup>
-                    Current location
+                    Your Current Location
                 </Popup>
             </Marker>
         </MapContainer>

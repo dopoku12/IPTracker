@@ -4,6 +4,11 @@
   margin: 0%;
 }
 
+body {
+  display: grid;
+  align-items: center;
+}
+
 .list-group-item {
   width: 20vw;
 }
@@ -19,6 +24,16 @@ main {
   border: solid red;
   height: 100%;
   width: 100%;
+}
+
+@media only screen and (max-width: 996px) {
+  .list-group-item {
+    width: 100%;
+    font-size: small;
+  }
+  .list-group-item .list-text {
+    font-size: small;
+  }
 }
 
 /*# sourceMappingURL=index.css.map */
