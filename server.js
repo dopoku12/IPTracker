@@ -11,18 +11,16 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 const PORT = process.env.PORT || 3003;
 const ad = Object.values(os.networkInterfaces())
-console.log()
-let ip = '73.9.149.180';
 
-// let oneAd = ad.map(i => console.log(i, 'stop;'));
-
-
-
+//user input IP
 app.post("/", (req, res) => {
     res.json(req.body.search)
-    console.log(req.body)
+    req.inputIp = req.body.search
+    console.log(req.inputIp)
+    next()
 });
 
+//client IPAddress  
 const clientIp = (req, res, next) => {
     axios({
         method: 'get',
@@ -37,7 +35,6 @@ const clientIp = (req, res, next) => {
             next(err)
         })
 };
-
 
 app.get("/api", clientIp, (req, res) => {
     axios({
