@@ -14,10 +14,8 @@ const ad = Object.values(os.networkInterfaces())
 
 //user input IP
 app.post("/", (req, res) => {
-    res.json(req.body.search)
-    req.inputIp = req.body.search
-    console.log(req.inputIp)
-    next()
+    console.log(req.body.data)
+    // next()
 });
 
 //client IPAddress  
@@ -37,13 +35,13 @@ const clientIp = (req, res, next) => {
 };
 
 app.get("/api", clientIp, (req, res) => {
+
     axios({
         method: 'get',
         url: `http://api.api-ninjas.com/v1/iplookup?address=${req.Ip}`,
         headers: { 'X-Api-Key': process.env.React_APP_API_KEY }
     })
         .then((apiRes) => {
-            console.log(apiRes.data)
             res.json(apiRes.data)
         })
         .catch((err) => {
