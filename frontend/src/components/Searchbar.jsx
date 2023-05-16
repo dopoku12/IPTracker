@@ -8,7 +8,7 @@ const Searchbar = ({ FaAngleRight }) => {
         e.preventDefault();
         axios
             .post("http://localhost:3003/", { data: usrInput })
-            .then((res) => console.log(res))
+            .then((res) => console.log(res.data))
             .catch((err) => console.log(err))
     }
 

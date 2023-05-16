@@ -4,22 +4,23 @@ const express = require("express");
 const cors = require('cors');
 const axios = require('axios');
 require('dotenv').config();
-
 const app = express();
 app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 const PORT = process.env.PORT || 3003;
-const ad = Object.values(os.networkInterfaces())
 
 //user input IP
-app.post("/", (req, res) => {
-    console.log(req.body.data)
-    // next()
+app.post("/", (req, res, next) => {
+    req.input = req.body.data
+    console.log(req.input)
+    next()
+    return
 });
 
 //client IPAddress  
 const clientIp = (req, res, next) => {
+    console.log("req:", req.input)
     axios({
         method: 'get',
         url: 'http://api.ipify.org',
@@ -35,7 +36,7 @@ const clientIp = (req, res, next) => {
 };
 
 app.get("/api", clientIp, (req, res) => {
-
+    console.log("req:", req.input)
     axios({
         method: 'get',
         url: `http://api.api-ninjas.com/v1/iplookup?address=${req.Ip}`,
