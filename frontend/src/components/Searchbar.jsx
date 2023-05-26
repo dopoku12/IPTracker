@@ -4,10 +4,11 @@ import { useState } from "react";
 const Searchbar = ({ FaAngleRight }) => {
     const [usrInput, setUsrInput] = useState('')
 
+    //sends input to backend
     const submitHandler = (e) => {
         e.preventDefault();
         axios
-            .post("http://localhost:3003/", { data: usrInput })
+            .post("http://localhost:3003/api", { data: usrInput })
             .then((res) => console.log(res.data))
             .catch((err) => console.log(err))
     }

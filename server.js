@@ -11,12 +11,12 @@ app.use(express.urlencoded({ extended: true }))
 const PORT = process.env.PORT || 3003;
 
 //user input IP
-app.post("/", (req, res, next) => {
-    req.input = req.body.data
-    console.log(req.input)
-    next()
-    return
-});
+// app.post("/", (req, res, next) => {
+//     req.input = req.body.data
+//     console.log(req.input)
+//     next()
+//     return
+// });
 
 //client IPAddress  
 const clientIp = (req, res, next) => {
@@ -26,8 +26,8 @@ const clientIp = (req, res, next) => {
         url: 'http://api.ipify.org',
     })
         .then((response) => {
-            req.Ip = response.data;
-            console.log(req.Ip)
+            req.userIp = response.data;
+            console.log(req.userIp)
             next()
         }).catch((err) => {
             console.log(err)
@@ -35,11 +35,14 @@ const clientIp = (req, res, next) => {
         })
 };
 
-app.get("/api", clientIp, (req, res) => {
-    console.log("req:", req.input)
+app.all("/api", clientIp, (req, res) => {
+    const inputIp = req.body.data ? req.body.data : req.userIp
+    console.log('in:', inputIp)
+    console.log('def', req.userIp)
+
     axios({
         method: 'get',
-        url: `http://api.api-ninjas.com/v1/iplookup?address=${req.Ip}`,
+        url: `http://api.api-ninjas.com/v1/iplookup?address=${inputIp}`,
         headers: { 'X-Api-Key': process.env.React_APP_API_KEY }
     })
         .then((apiRes) => {
