@@ -36,6 +36,7 @@ const clientIp = (req, res, next) => {
 };
 
 app.all("/api", clientIp, (req, res) => {
+    console.log(req.body.data)
     const inputIp = req.body.data ? req.body.data : req.userIp
     console.log('in:', inputIp)
     console.log('def', req.userIp)

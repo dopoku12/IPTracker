@@ -9,13 +9,8 @@ import {
 import "leaflet/dist/leaflet.css"
 
 const Leafletmap = ({ data }) => {
-    console.log(data.city)
-    console.log(data.region_code)
     const userLnL = [data.lat, data.lon]
     const defaultLnL = [51.505, -0.09]
-    console.log('lat:', data.lat, 'lon:', data.lon)
-
-
     return (
         <MapContainer center={
             data ? userLnL : defaultLnL
@@ -35,8 +30,6 @@ const Leafletmap = ({ data }) => {
                 </Popup>
             </Marker>
         </MapContainer>
-
     )
-
 }
 export default Leafletmap;
