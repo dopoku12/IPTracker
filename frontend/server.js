@@ -1,9 +1,9 @@
 const path = require('path')
 const express = require("express");
-const axios = require('axios');
 const cors = require('cors');
-
+const axios = require('axios');
 require('dotenv').config();
+
 const app = express();
 app.use(cors())
 app.use(express.json())
@@ -17,6 +17,7 @@ app.get("/", (req, res) => {
         headers: { 'X-Api-Key': process.env.React_APP_API_KEY }
     })
         .then((apiRes) => {
+            console.log(apiRes.data)
             res.json(apiRes.data)
         })
         .catch((err) => {

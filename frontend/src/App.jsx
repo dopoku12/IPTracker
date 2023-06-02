@@ -1,16 +1,16 @@
 import Dashboard from './components/Dashboard'
-import Searchbar from './components/Searchbar'
 import Leafletmap from './components/Leafletmap'
-import useFetch from './hooks/useGet'
+import useFetch from './hooks/useFetch'
 import Footer from './components/Footer'
 import {
   FaGithub, FaLinkedin,
   FaEnvelope, FaRocket,
   FaAngleRight
-}
-  from 'react-icons/fa'
-import useGet from './hooks/useGet'
-import usePost from './hooks/usePost'
+} from 'react-icons/fa'
+import { useState } from 'react'
+import axios from 'axios'
+
+
 function App() {
   //external links
   const links = [
@@ -29,17 +29,28 @@ function App() {
     },
     {
       id: 6, colorCode: '78cac5', iconName: FaEnvelope,
-      name: 'Email', pathName: ''
-    }]
-  const local = 'http://localhost:3003/'
-  const { data } = useGet(local)
-  console.log(data)
+      name: 'Email', pathName: '',
+    }];
+  //user entry value 
+  const [UsrInput, setUsrInput] = useState('');
 
-  const ipify = 'http://api.ipify.org/'
-  const { data: ipRes } = useGet(ipify)
 
-  usePost(ipRes, local)
+  //local address
+  const local = 'http://localhost:3003/api';
+  const { data } = useFetch(local)
 
+  //sends user input to backend
+  const submitHandler = (e) => {
+    e.preventDefault();
+
+    axios.post({ url: local, data: UsrInput })
+      .then((res) => {
+        console.log(res.data)
+        console.log(res)
+      })
+      .catch((err) => console.log(err))
+
+  }
 
   return (
     <div className="d-flex 
@@ -51,12 +62,24 @@ function App() {
         <h1 className='text-primary'>
           IP Address Tracker
         </h1>
-        <Searchbar FaAngleRight={FaAngleRight} />
+        <nav>
+          <form onSubmit={submitHandler} className='input-group'>
+            <input value={UsrInput}
+              onChange={(e) => setUsrInput(e.target.value)}
+              name="search"
+              className='form-control rounded'
+              placeholder='Search for a Client IP Address A.B.C.D' />
+
+            <button type='submit' className='btn btn-dark'>
+              <FaAngleRight />
+            </button>
+          </form>
+        </nav>
+
         <Dashboard data={data} />
       </header>
       <main>
         {
-
           data && <Leafletmap data={data} />
         }
       </main>

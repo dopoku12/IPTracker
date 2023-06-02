@@ -11,7 +11,6 @@ import "leaflet/dist/leaflet.css"
 const Leafletmap = ({ data }) => {
     const userLnL = [data.lat, data.lon]
     const defaultLnL = [51.505, -0.09]
-    console.log('lat:', data.lat, 'lon:', data.lon)
     return (
         <MapContainer center={
             data ? userLnL : defaultLnL
@@ -27,11 +26,10 @@ const Leafletmap = ({ data }) => {
                 data ? userLnL : defaultLnL
             }>
                 <Popup>
-                    Current location
+                    {data.city}, {data.region} ({data.country})
                 </Popup>
             </Marker>
         </MapContainer>
-
     )
 }
 export default Leafletmap;
