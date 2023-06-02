@@ -43,14 +43,11 @@ function App() {
   const submitHandler = (e) => {
     e.preventDefault();
 
-    axios({
-      url: local,
-      method: 'Post',
-      data: UsrInput
-    }).then((res) => {
-      console.log(res.data)
-      console.log(res)
-    })
+    axios.post({ url: local, data: UsrInput })
+      .then((res) => {
+        console.log(res.data)
+        console.log(res)
+      })
       .catch((err) => console.log(err))
 
   }
