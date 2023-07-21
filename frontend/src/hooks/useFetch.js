@@ -1,19 +1,18 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-const useFetch = (api) => {
+const useFetch = (url) => {
 
     const [data, SetData] = useState('')
     useEffect(() => {
-        axios.get(api)
+        axios.post(url)
             .then((response) => {
                 SetData(response.data);
                 console.log(response.data)
             })
             .catch((err) => console.error('error:', err))
-
-    }, [api]);
-    return { data }
+    }, [url]);
+    return { data, SetData }
 }
 
 export default useFetch; 

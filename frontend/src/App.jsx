@@ -32,24 +32,25 @@ function App() {
       name: 'Email', pathName: '',
     }];
   //user entry value 
-  const [UsrInput, setUsrInput] = useState('');
-
+  const [usrInput, setUsrInput] = useState('');
 
   //local address
-  const local = 'http://localhost:3003/api';
-  const { data } = useFetch(local)
+  const url = 'http://localhost:3003/api';
+  const { data, SetData } = useFetch(url)
 
   //sends user input to backend
   const submitHandler = (e) => {
     e.preventDefault();
 
-    axios.post({ url: local, data: UsrInput })
+    axios({
+      method: 'POST',
+      url: url,
+      params: { usrInput: usrInput }
+    })
       .then((res) => {
-        console.log(res.data)
-        console.log(res)
+        SetData(res.data)
       })
       .catch((err) => console.log(err))
-
   }
 
   return (
@@ -58,27 +59,31 @@ function App() {
     justify-content-center
     align-items-center
     ">
-      <header>
-        <h1 className='text-primary'>
+      <header className="d-flex flex-column
+      justify-content-center
+      align-items-center">
+        <h4 className=''>
           IP Address Tracker
-        </h1>
-        <nav>
-          <form onSubmit={submitHandler} className='input-group'>
-            <input value={UsrInput}
-              onChange={(e) => setUsrInput(e.target.value)}
-              name="search"
-              className='form-control rounded'
-              placeholder='Search for a Client IP Address A.B.C.D' />
+        </h4>
 
-            <button type='submit' className='btn btn-dark'>
-              <FaAngleRight />
-            </button>
-          </form>
-        </nav>
+
+        <form onSubmit={submitHandler} className=' input-group mb-3'>
+          <input cl value={usrInput}
+            onChange={(e) => setUsrInput(e.target.value)}
+            name="search"
+            className=' form-control rounded'
+            placeholder='Search for a Client IP Address A.B.C.D' />
+          <button type='submit' className='input-group-append btn  btn-dark'>
+            <FaAngleRight />
+          </button>
+        </form>
+
+      </header>
+      <main className=''>
 
         <Dashboard data={data} />
-      </header>
-      <main>
+
+
         {
           data && <Leafletmap data={data} />
         }

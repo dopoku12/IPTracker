@@ -1,5 +1,4 @@
 @import "/node_modules/bootstrap/dist/css/bootstrap.css";
-
 * {
 	padding: 0;
 	margin: 0%;
@@ -8,14 +7,18 @@ body {
 	display: grid;
 	align-items: center;
 }
+header{
 
-.list-group-item {
-	width: 20vw;
+	background-image: url('../assets/img/banner.png');
+	width: 100%;
+
 }
+
+
 main {
 	height: 65vh;
 	width: 100%;
-	border: solid black;
+	margin-bottom: 2px;
 }
 /*map sizing*/
 .leaflet-container {
