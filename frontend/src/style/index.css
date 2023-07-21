@@ -17,7 +17,10 @@ header {
 main {
   height: 65vh;
   width: 100%;
-  margin-bottom: 2px;
+}
+
+footer {
+  margin-top: 30%;
 }
 
 /*map sizing*/
