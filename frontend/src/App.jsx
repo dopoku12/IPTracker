@@ -34,7 +34,7 @@ function App() {
   const [usrInput, setUsrInput] = useState('');
 
   //local address
-  const url = "/netlifyFunction";
+  const url = "http://localhost:3003/api";
   const { data, SetData } = useFetch(url)
 
   //sends user input to backend
