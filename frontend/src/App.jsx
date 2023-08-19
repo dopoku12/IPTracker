@@ -10,7 +10,6 @@ import {
 import { useState } from 'react'
 import axios from 'axios'
 
-
 function App() {
   //external links
   const links = [
@@ -35,13 +34,13 @@ function App() {
   const [usrInput, setUsrInput] = useState('');
 
   //local address
-  const url = 'http://localhost:3003/api';
+  const url = "/netlifyFunction";
   const { data, SetData } = useFetch(url)
 
   //sends user input to backend
   const submitHandler = (e) => {
-    e.preventDefault();
 
+    e.preventDefault();
     axios({
       method: 'POST',
       url: url,
@@ -66,7 +65,6 @@ function App() {
           IP Address Tracker
         </h4>
 
-
         <form onSubmit={submitHandler} className=' input-group mb-3'>
           <input cl value={usrInput}
             onChange={(e) => setUsrInput(e.target.value)}
@@ -77,13 +75,10 @@ function App() {
             <FaAngleRight />
           </button>
         </form>
-
       </header>
+
       <main className=''>
-
         <Dashboard data={data} />
-
-
         {
           data && <Leafletmap data={data} />
         }

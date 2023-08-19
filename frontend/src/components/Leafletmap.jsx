@@ -6,7 +6,6 @@ import {
     useMapEvents,
 } from 'react-leaflet'
 import "leaflet/dist/leaflet.css"
-import { useEffect } from 'react'
 
 function MapEvents({ data }) {
     const userLnL = [data.lat, data.lon]
@@ -17,13 +16,6 @@ function MapEvents({ data }) {
         }
 
     })
-    // map.auto = useEffect(() => {
-
-    //     map.flyTo(userLnL, map.getZoom());
-
-    // }, [map, data, userLnL]);
-
-    console.log(map)
     return !data ? null : (
         <Marker position={userLnL}>
             <Popup>
