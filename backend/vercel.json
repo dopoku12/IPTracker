@@ -1,20 +1,13 @@
 {
     "version": 2,
     "builds": [
-      {
-        "src": "function/vercelFunction.js",
-        "use": "@vercel/node"
-      }
+      { "src": "function/vercelFunction.js", "use": "@vercel/node" }
     ],
     "routes": [
-      {
-        "src": "/api/.*",
-        "dest": "function/vercelFunction.js"
-      },
-      {
-        "src": "/(.*)",
-        "dest": "public/$1"
-      }
+      { "src": "/api/.*", "dest": "function/vercelFunction.js" },
+      { "src": "/_.*", "dest": "function/vercelFunction.js" },
+      { "src": "/index-826d06ff.js", "dest": "index-826d06ff.js" },
+      { "src": "/(.*)", "dest": "index.html" }
     ]
   }
   
