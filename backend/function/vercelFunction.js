@@ -12,30 +12,23 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 const PORT = process.env.PORT || 3003;
 
-
 //client IPAddress  
 const clientIp = (req, res, next) => {
     console.log("req:", req.input)
     axios({
         method: 'GET',
         url: 'http://api.ipify.org',
+    }).then((response) => {
+        req.userIp = response.data
+        next()
+    }).catch((err) => {
+        console.log(err)
+        next(err)
     })
-        .then((response) => {
-            req.userIp = response.data;
-            console.log(req.userIp)
-            next()
-        }).catch((err) => {
-            console.log(err)
-            next(err)
-        })
 };
 
-
 app.post("/api", clientIp, (req, res) => {
-    console.log('update', req.query)
-    const inputIp = req.query.usrInput ? req.query.usrInput : req.userIp
-    console.log('in:', inputIp)
-    console.log('def', req.userIp)
+    const inputIp = req.query.usrInput ? req.query.usrInput : req.userIp;
     axios({
         method: 'GET',
         url: `http://api.api-ninjas.com/v1/iplookup?address=${inputIp}`,
@@ -50,6 +43,4 @@ app.post("/api", clientIp, (req, res) => {
         })
 });
 
-app.listen(PORT, () => {
-    console.log(`listening on...Port:${PORT}`)
-}) 
+module.exports = app
