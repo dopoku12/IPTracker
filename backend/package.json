@@ -6,7 +6,7 @@
 	"scripts": {
 		
 		"build": "build",
-		"preview": "vite preview",
+		"preview": "preview",
 		"dev": "nodemon server.js",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
